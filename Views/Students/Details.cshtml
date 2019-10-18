@@ -1,0 +1,40 @@
+@model studentsCRUD.StudentsModel.StudentClasses
+@{
+    ViewData["Title"] = "Student Data";
+    var Stud = Model.stud;
+    var StudInfo = Model.studInfo;
+}
+
+
+<h1>Details</h1>
+
+<br>
+<br>
+
+<div>
+    <h3>Student Information:</h3>
+    
+    <br>
+
+    <p><b>@Html.DisplayNameFor(Model => Stud.StudentID):</b> @Model.stud.StudentID</p>
+    <p><b>@Html.DisplayNameFor(Model => Stud.IDNumber):</b> @Model.stud.IDNumber</p>
+    <p><b>Fullname:</b> @Model.stud.Lastname, @Model.stud.Firstname @Model.stud.MiddleName</p>
+    <p><b>@Html.DisplayNameFor(Model => Stud.Email):</b> @Model.stud.Email</p>
+    <p><b>@Html.DisplayNameFor(Model => StudInfo.Address):</b> @Model.studInfo.Address</p>
+    <p><b>@Html.DisplayNameFor(Model => StudInfo.City):</b> @Model.studInfo.City</p>
+    <p><b>@Html.DisplayNameFor(Model => StudInfo.Zip):</b> @Model.studInfo.Zip</p>
+    <p><b>@Html.DisplayNameFor(Model => StudInfo.Country):</b> @Model.studInfo.Country</p>
+    <p><b>@Html.DisplayNameFor(Model => StudInfo.Phone):</b> @Model.studInfo.Phone</p>
+</div>
+
+<div id="controls" class="row col">
+    <a asp-area="" asp-controller="Students" asp-action="Index" class="btn btn-primary btn-sm">Back to list</a>
+    <a href="@Url.Action("Edit", "Students", new { id = Model.stud.StudentID })" class="btn btn-warning btn-sm" style="margin: 0px 10px 0px 10px">Edit</a>
+
+    @using (Html.BeginForm("Delete", "Students", FormMethod.Post, new { StudentID = Model.stud.StudentID }))
+    {
+        @Html.AntiForgeryToken()
+        <input type="hidden" id="DeleteID" name="DeleteID" value="@Model.stud.StudentID">
+        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+    }
+</div>

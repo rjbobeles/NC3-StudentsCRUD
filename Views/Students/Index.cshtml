@@ -1,0 +1,69 @@
+@model IEnumerable<studentsCRUD.StudentsModel.Student>
+@{
+    ViewData["Title"] = "Students";
+    int Counter = 0;
+}
+
+<div id="controls" style="margin-bottom: 20px;">
+    <a asp-area="" asp-controller="Students" asp-action="Add">Add Student Partial</a> |
+    <a asp-area="" asp-controller="Students" asp-action="AddFull">Add Student Full</a>
+</div>
+<table class="table table-bordered table-sm text-center">
+    <thead>
+        <tr> 
+            <th>
+                @Html.DisplayNameFor(model => model.StudentID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IDNumber)
+            </th>
+            <th>
+                Fullname (Last, First Middle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+      @foreach(studentsCRUD.StudentsModel.Student student in Model)
+      {
+        <tr>
+            <td>
+                @student.StudentID
+            </td>
+            <td>
+                @student.IDNumber
+            </td>
+            <td>
+                @student.Lastname, 
+                @student.Firstname 
+                @student.MiddleName
+            </td>
+            <td>
+                @student.Email
+            </td>
+            <td>
+                <a href="@Url.Action("Details", "Students", new { id = student.StudentID })" class="btn btn-primary btn-sm">View</a>
+                <a href="@Url.Action("Edit", "Students", new { id = student.StudentID })" class="btn btn-warning btn-sm">Edit</a>
+
+                @using (Html.BeginForm("Delete", "Students", FormMethod.Post, new { id = 3 }))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" id="DeleteID" name="DeleteID" value="@student.StudentID">
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                }
+            </td>
+        </tr>
+        Counter++;
+      }
+
+      @if(Counter == 0)
+      {
+          <tr>
+              <td colspan="5" class="text-center">There are no records to show add one <a asp-area="" asp-controller="Students" asp-action="Add">here</a>!</td>
+          </tr>
+      }
+    </tbody>
+</table>

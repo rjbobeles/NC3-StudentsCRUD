@@ -1,0 +1,127 @@
+@model studentsCRUD.StudentsModel.StudentClasses
+@{
+    ViewData["Title"] = "Add Student";
+}
+
+<h1>Add Student - Full</h1>
+
+
+@using(@Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Students</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @Html.HiddenFor(Model => Model.stud.StudentID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => Model.stud.IDNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-12 col-md-6">
+                @Html.EditorFor(model => Model.stud.IDNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => Model.stud.IDNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => Model.stud.Firstname, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-12 col-md-6">
+                @Html.EditorFor(model => Model.stud.Firstname, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => Model.stud.Firstname, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => Model.stud.MiddleName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-12 col-md-6">
+                @Html.EditorFor(model => Model.stud.MiddleName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => Model.stud.MiddleName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => Model.stud.Lastname, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-12 col-md-6">
+                @Html.EditorFor(model => Model.stud.Lastname, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => Model.stud.Lastname, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => Model.stud.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-12 col-md-6">
+                @Html.EditorFor(model => Model.stud.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => Model.stud.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => Model.stud.Course, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-12 col-md-6">
+                @Html.EditorFor(model => Model.stud.Course, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => Model.stud.Course, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @Html.HiddenFor(Model => Model.studInfo.StudentInfoID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => Model.studInfo.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-12 col-md-6">
+                @Html.EditorFor(model => Model.studInfo.Address, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => Model.studInfo.Address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => Model.studInfo.City, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-12 col-md-6">
+                @Html.EditorFor(model => Model.studInfo.City, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => Model.studInfo.City, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => Model.studInfo.Zip, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-12 col-md-6">
+                @Html.EditorFor(model => Model.studInfo.Zip, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => Model.studInfo.Zip, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => Model.studInfo.Country, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-12 col-md-6">
+                @Html.EditorFor(model => Model.studInfo.Country, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => Model.studInfo.Country, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => Model.studInfo.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-12 col-md-6">
+                @Html.EditorFor(model => Model.studInfo.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => Model.studInfo.Phone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Edit" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<hr>
+
+<div id="controls">
+    <a asp-action="" asp-controller="Students" asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
